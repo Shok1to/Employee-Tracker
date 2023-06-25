@@ -97,7 +97,7 @@ inquirer
 
           ])
             .then((answer) => {
-              console.log(answer.first_name, answer.last_name); 
+              console.log(DB.addEmployee(answer).first_name, answer.last_name,role_id,manager_id); 
             }); 
             
         DB.addEmployee()
