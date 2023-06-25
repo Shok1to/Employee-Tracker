@@ -48,19 +48,53 @@ inquirer
             init()
         })
     }
-    if(answers.category==='Add an Employee'){
+    if(answers.category==='Add an employee'){
        inquirer
        .prompt([
             { 
               name: "first_name",
               type: "input",
-              message: "What is employee's first name?",
+              message: "What is the employee's first name?",
             },
             { 
               name: "last_name",
               type: "input",
-              message: "What is employee's last name?",
+              message: "What is the employee's last name?",
             },
+            { 
+                name: "role_id",
+                type: "list",
+                message: "What is the employee's role?",
+                choices: [
+                    'Sales Lead',
+                    'Salesperson',
+                    'Lead Engineer',
+                    'Software Engineer',
+                    'Account Manager', 
+                    'Accountant',
+                    'Legal Team Lead',
+                    'Lawyer',
+
+                ]
+            },
+            { 
+                name: "manager_id",
+                type: "list",
+                message: "Who is the employee's manager?",
+                choices: [
+                    "None",
+                    "John Doe",
+                    "Mike Chan",
+                    "Ashley Rodriguez",
+                    "Kevin Tupik",
+                    "Kunal Singh",
+                    "Malia Brown",
+                    "Sarah Lourd",
+                    "Tom Allen",
+
+                ]
+            },
+
           ])
             .then((answer) => {
               console.log(answer.first_name, answer.last_name); 

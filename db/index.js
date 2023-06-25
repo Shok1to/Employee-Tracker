@@ -14,7 +14,7 @@ class DB{
         return this.connection.promise().query('SELECT * FROM department')
     }
     addEmployee(){
-        return this.connection.promise().query('SELECT * FROM department')
+        return this.connection.promise().query('SELECT employee.first_name, employee.last_name, employee.role_id, employee.manager_id')
     }
 
 }
