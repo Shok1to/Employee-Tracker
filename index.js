@@ -49,11 +49,25 @@ inquirer
         })
     }
     if(answers.category==='Add an Employee'){
+       inquirer
+       .prompt([
+            { 
+              name: "first_name",
+              type: "input",
+              message: "What is employee's first name?",
+            },
+            { 
+              name: "last_name",
+              type: "input",
+              message: "What is employee's last name?",
+            },
+          ])
+            .then((answer) => {
+              console.log(answer.first_name, answer.last_name); 
+            }); 
+            
         DB.addEmployee()
-        .then(([data])=>{
-            console.table(data)
-            init()
-        })
+        
     }
   })
 }
