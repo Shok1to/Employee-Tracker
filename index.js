@@ -25,7 +25,6 @@ inquirer
   .then((answers) => {
     console.log(answers.category)
     if(answers.category==='View all employees'){
-        console.log('everything is ok')
         DB.viewAllEmployees()
         .then(([data])=>{
             console.table(data)
@@ -33,15 +32,13 @@ inquirer
         })
     }
     if(answers.category==='View all roles'){
-        console.log('everything is ok')
-        DB.viewAllRoles()
+         DB.viewAllRoles()
         .then(([data])=>{
             console.table(data)
             init()
         })
     }
     if(answers.category==='View all departments'){
-        console.log('everything is ok')
         DB.viewAllDepartments()
         .then(([data])=>{
             console.table(data)
@@ -65,15 +62,15 @@ inquirer
                 name: "role_id",
                 type: "list",
                 message: "What is the employee's role?",
-                choices: [
-                    'Sales Lead',
-                    'Salesperson',
-                    'Lead Engineer',
-                    'Software Engineer',
-                    'Account Manager', 
-                    'Accountant',
-                    'Legal Team Lead',
-                    'Lawyer',
+                choices: [1,2
+                    // 'Sales Lead',
+                    // 'Salesperson',
+                    // 'Lead Engineer',
+                    // 'Software Engineer',
+                    // 'Account Manager', 
+                    // 'Accountant',
+                    // 'Legal Team Lead',
+                    // 'Lawyer',
 
                 ]
             },
@@ -97,10 +94,11 @@ inquirer
 
           ])
             .then((answer) => {
-              console.log(DB.addEmployee(answer).first_name, answer.last_name,role_id,manager_id); 
+                DB.addEmployee(answer) 
+            //   console.log(DB.addEmployee(answer).first_name, answer.last_name,role_id,manager_id); 
             }); 
             
-        DB.addEmployee()
+        
         
     }
   })
