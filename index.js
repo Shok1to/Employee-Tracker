@@ -45,62 +45,60 @@ inquirer
             init()
         })
     }
-    if(answers.category==='Add an employee'){
-       inquirer
-       .prompt([
-            { 
-              name: "first_name",
-              type: "input",
-              message: "What is the employee's first name?",
-            },
-            { 
-              name: "last_name",
-              type: "input",
-              message: "What is the employee's last name?",
-            },
-            { 
-                name: "role_id",
-                type: "list",
-                message: "What is the employee's role?",
-                choices: [1,2
-                    // 'Sales Lead',
-                    // 'Salesperson',
-                    // 'Lead Engineer',
-                    // 'Software Engineer',
-                    // 'Account Manager', 
-                    // 'Accountant',
-                    // 'Legal Team Lead',
-                    // 'Lawyer',
+    // if(answers.category==='Add an employee'){
+    //    inquirer
+    //    .prompt([
+    //         { 
+    //           name: "first_name",
+    //           type: "input",
+    //           message: "What is the employee's first name?",
+    //         },
+    //         { 
+    //           name: "last_name",
+    //           type: "input",
+    //           message: "What is the employee's last name?",
+    //         },
+    //         { 
+    //             name: "role_id",
+    //             type: "list",
+    //             message: "What is the employee's role?",
+    //             choices: [{ name: 'Sales Lead', value: 1 },
+    //             { name: 'Salesperson', value: 2 },
+    //             { name: 'Lead Engineer', value: 3 },
+    //             { name: 'Software Engineer', value: 4 },
+    //             { name: 'Account Manager', value: 5 },
+    //             { name: 'Accountant', value: 6 },
+    //             { name: 'Legal Team Lead', value: 7 },
+    //             { name: 'Lawyer', value: 8 }
 
-                ]
-            },
-            { 
-                name: "manager_id",
-                type: "list",
-                message: "Who is the employee's manager?",
-                choices: [
-                    "None",
-                    "John Doe",
-                    "Mike Chan",
-                    "Ashley Rodriguez",
-                    "Kevin Tupik",
-                    "Kunal Singh",
-                    "Malia Brown",
-                    "Sarah Lourd",
-                    "Tom Allen",
+    //             ]
+    //         },
+    //         { 
+    //             name: "manager_id",
+    //             type: "list",
+    //             message: "Who is the employee's manager?",
+    //             choices: [{ name: 'John Doe', value: 1 },
+    //             { name: 'Mike Chan', value: 2 },
+    //             { name: 'Ashley Rodriguez', value: 3 },
+    //             { name: 'Kevin Tupik', value: 4 },
+    //             { name: 'Kunal Singh', value: 5 },
+    //             { name: 'Malia Brown', value: 6 },
+    //             { name: 'Sarah Lourd', value: 7 },
+    //             { name: 'Tom Allen', value: 8 }
+                   
 
-                ]
-            },
+    //             ]
+    //         },
 
-          ])
-            .then((answer) => {
-                DB.addEmployee(answer) 
-            //   console.log(DB.addEmployee(answer).first_name, answer.last_name,role_id,manager_id); 
-            }); 
+    //       ])
+    //         .then((answer) => {
+    //             DB.addEmployee(answer) 
+    //         //   console.log(DB.addEmployee(answer).first_name, answer.last_name,role_id,manager_id); 
+    //         }); 
             
         
         
-    }
+    // }
   })
 }
 init()

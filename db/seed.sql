@@ -1,4 +1,4 @@
-USE employees;
+USE employee;
 
 INSERT INTO department (name)
 VALUES
