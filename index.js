@@ -30,7 +30,7 @@ inquirer
             console.table(data)
             init()
         })
-    }
+  }})
     if(answers.category==='View all roles'){
          DB.viewAllRoles()
         .then(([data])=>{
@@ -45,51 +45,52 @@ inquirer
             init()
         })
     }
-    // if(answers.category==='Add an employee'){
+    
+    if(answers.category==='Add Department'){
+       inquirer
+       .prompt([
+            { 
+              name: "department_name",
+              type: "input",
+              message: "What is the name of the department?",
+            },
+
+
+          ])
+            .then((answer) => {
+                DB.addDepartment(answer) 
+            //   console.log(DB.addDepartment(answer).department_name); 
+            }); 
+            
+        
+        
+    // }
+    // if(answers.category==='Add Role'){
     //    inquirer
     //    .prompt([
     //         { 
-    //           name: "first_name",
+    //           name: "role_name",
     //           type: "input",
-    //           message: "What is the employee's first name?",
+    //           message: "What is the name of the role",
     //         },
     //         { 
-    //           name: "last_name",
+    //           name: "salary",
     //           type: "input",
-    //           message: "What is the employee's last name?",
+    //           message: "What is the salary of the role?",
     //         },
     //         { 
-    //             name: "role_id",
+    //             name: "department_id",
     //             type: "list",
-    //             message: "What is the employee's role?",
-    //             choices: [{ name: 'Sales Lead', value: 1 },
-    //             { name: 'Salesperson', value: 2 },
-    //             { name: 'Lead Engineer', value: 3 },
-    //             { name: 'Software Engineer', value: 4 },
-    //             { name: 'Account Manager', value: 5 },
-    //             { name: 'Accountant', value: 6 },
-    //             { name: 'Legal Team Lead', value: 7 },
-    //             { name: 'Lawyer', value: 8 }
+    //             message: "Which department does the role belong to?",
+    //             choices: [
+    //             { name: 'Sales', value: 1 },
+    //             { name: 'Engineer', value: 2 },
+    //             { name: 'Finance', value: 3 },
+    //             { name: 'Legal', value: 4 },
+    //             
 
     //             ]
     //         },
-    //         { 
-    //             name: "manager_id",
-    //             type: "list",
-    //             message: "Who is the employee's manager?",
-    //             choices: [{ name: 'John Doe', value: 1 },
-    //             { name: 'Mike Chan', value: 2 },
-    //             { name: 'Ashley Rodriguez', value: 3 },
-    //             { name: 'Kevin Tupik', value: 4 },
-    //             { name: 'Kunal Singh', value: 5 },
-    //             { name: 'Malia Brown', value: 6 },
-    //             { name: 'Sarah Lourd', value: 7 },
-    //             { name: 'Tom Allen', value: 8 }
-                   
-
-    //             ]
-    //         },
-
     //       ])
     //         .then((answer) => {
     //             DB.addEmployee(answer) 
@@ -99,6 +100,56 @@ inquirer
         
         
     // }
-  })
+    // if(answers.category==='Add an employee'){
+        //    inquirer
+        //    .prompt([
+        //         { 
+        //           name: "first_name",
+        //           type: "input",
+        //           message: "What is the employee's first name?",
+        //         },
+        //         { 
+        //           name: "last_name",
+        //           type: "input",
+        //           message: "What is the employee's last name?",
+        //         },
+        //         { 
+        //             name: "role_id",
+        //             type: "list",
+        //             message: "What is the employee's role?",
+        //             choices: [{ name: 'Sales Lead', value: 1 },
+        //             { name: 'Salesperson', value: 2 },
+        //             { name: 'Lead Engineer', value: 3 },
+        //             { name: 'Software Engineer', value: 4 },
+        //             { name: 'Account Manager', value: 5 },
+        //             { name: 'Accountant', value: 6 },
+        //             { name: 'Legal Team Lead', value: 7 },
+        //             { name: 'Lawyer', value: 8 }
+    
+        //             ]
+        //         },
+        //         { 
+        //             name: "manager_id",
+        //             type: "list",
+        //             message: "Who is the employee's manager?",
+        //             choices: [{ name: 'John Doe', value: 1 },
+        //             { name: 'Mike Chan', value: 2 },
+        //             { name: 'Ashley Rodriguez', value: 3 },
+        //             { name: 'Kevin Tupik', value: 4 },
+        //             { name: 'Kunal Singh', value: 5 },
+        //             { name: 'Malia Brown', value: 6 },
+        //             { name: 'Sarah Lourd', value: 7 },
+        //             { name: 'Tom Allen', value: 8 }
+                       
+    
+        //             ]
+        //         },
+    
+        //       ])
+        //         .then((answer) => {
+        //             DB.addEmployee(answer) 
+        //         //   console.log(DB.addEmployee(answer).first_name, answer.last_name,role_id,manager_id); 
+    
+  }
 }
 init()
