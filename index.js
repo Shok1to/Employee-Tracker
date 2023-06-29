@@ -55,14 +55,6 @@ function init() {
       }
     })
 
-
-  //             { name: 'Sales', value: 1 },
-  //             { name: 'Engineer', value: 2 },
-  //             { name: 'Finance', value: 3 },
-  //             { name: 'Legal', value: 4 },
-  //             
-
-
 }
 
 
@@ -142,7 +134,13 @@ function createEmployee() {
 }
 
 function createRole() {
-  // /
+  DB.viewAllDepartments()
+    .then(([departments]) => {
+      const deptOptions = departments.map(({ id, name }) => ({
+        name: name,
+        value: id
+      }))
+
       inquirer
         .prompt([
           {
@@ -150,24 +148,27 @@ function createRole() {
             type: "input",
             message: "What is the name of the role",
           },
-      //     {
-      //       name: "salary",
-      //       type: "input",
-      //       message: "What is the salary of the role?",
-      //     },
-      //     {
-      //       name: "department_belong",
-      //       type: "list",
-      //       message: "Which department does the role belong to?",
-      //       choices:deptOptions
-      // },
+          {
+            name: "salary",
+            type: "input",
+            message: "What is the salary of the role?",
+          },
+          {
+            name: "department_id",
+            type: "list",
+            message: "Which department does the role belong to?",
+            choices: deptOptions
+          },
         ])
         .then((answer) => {
-          let role = answer.role_name;
-          DB.addRole(role)
-          console.log(`added ${role}`);
-          init()
+          let newRole = { 
+            role_name: answer.role_name,
+          }
+          DB.addRole(newRole);
+          console.log(`added ${newRole}`);
+          init();
         })
-    // })
-}
+      })
+    }
 init()
+
