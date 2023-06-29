@@ -50,7 +50,7 @@ function init() {
       if (answers.category === 'Add an employee') {
         createEmployee();
       }
-      if (answers.category === 'Add role') {
+      if (answers.category === 'Add a role') {
         createRole();
       }
     })
@@ -167,10 +167,20 @@ function createRole() {
             department_id: answer.department_id,
           }
           DB.addRole(newRole);
-          console.log(`added ${newRole}`);
+          console.log(`added ${newRole.title}`);
           init();
         })
       })
     }
+
+// function updateEmployeeRole(){
+//   DB.viewAllEmployees()
+//         .then(([employees]) => {
+//           const managerOptions = employees.map(({ id, first_name, last_name }) => ({
+//             name: `${first_name} ${last_name}`,
+//             value: id
+//           }))
+// }
+
 init()
 
