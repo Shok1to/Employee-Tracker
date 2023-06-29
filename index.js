@@ -144,7 +144,7 @@ function createRole() {
       inquirer
         .prompt([
           {
-            name: "role_name",
+            name: "title",
             type: "input",
             message: "What is the name of the role",
           },
@@ -162,7 +162,9 @@ function createRole() {
         ])
         .then((answer) => {
           let newRole = { 
-            role_name: answer.role_name,
+            title: answer.title,
+            salary: answer.salary,
+            department_id: answer.department_id,
           }
           DB.addRole(newRole);
           console.log(`added ${newRole}`);
