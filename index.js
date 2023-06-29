@@ -48,51 +48,19 @@ function init() {
 
       }
       if (answers.category === 'Add an employee') {
-        createEmployee()
+        createEmployee();
+      }
+      if (answers.category === 'Add role') {
+        createRole();
       }
     })
 
 
-
-
-
-
-
-  // if(answers.category==='Add Role'){
-  //    inquirer
-  //    .prompt([
-  //         { 
-  //           name: "role_name",
-  //           type: "input",
-  //           message: "What is the name of the role",
-  //         },
-  //         { 
-  //           name: "salary",
-  //           type: "input",
-  //           message: "What is the salary of the role?",
-  //         },
-  //         { 
-  //             name: "department_id",
-  //             type: "list",
-  //             message: "Which department does the role belong to?",
-  //             choices: [
   //             { name: 'Sales', value: 1 },
   //             { name: 'Engineer', value: 2 },
   //             { name: 'Finance', value: 3 },
   //             { name: 'Legal', value: 4 },
   //             
-
-  //             ]
-  //         },
-  //       ])
-  //         .then((answer) => {
-  //             DB.addEmployee(answer) 
-  //         //   console.log(DB.addEmployee(answer).first_name, answer.last_name,role_id,manager_id); 
-  //         }); 
-
-
-
-  // }
 
 
 }
@@ -123,56 +91,83 @@ function createEmployee() {
         name: title,
         value: id
       }))
-  
+
       DB.viewAllEmployees()
-      .then(([employees]) => {
-        const managerOptions = employees.map(({ id, first_name, last_name }) => ({
-          name: `${first_name} ${last_name}`,
-          value: id
-        }))
+        .then(([employees]) => {
+          const managerOptions = employees.map(({ id, first_name, last_name }) => ({
+            name: `${first_name} ${last_name}`,
+            value: id
+          }))
 
-  inquirer
-    .prompt([
-      {
-        name: "first_name",
-        type: "input",
-        message: "What is the employee's first name?",
-      },
-      {
-        name: "last_name",
-        type: "input",
-        message: "What is the employee's last name?",
-      },
-      {
-        name: "role_id",
-        type: "list",
-        message: "What is the employee's role?",
-        choices: roleOptions
-      },
-      {
-        name: "manager_id",
-        type: "list",
-        message: "Who is the employee's manager?",
-        choices: managerOptions
-      },
+          inquirer
+            .prompt([
+              {
+                name: "first_name",
+                type: "input",
+                message: "What is the employee's first name?",
+              },
+              {
+                name: "last_name",
+                type: "input",
+                message: "What is the employee's last name?",
+              },
+              {
+                name: "role_id",
+                type: "list",
+                message: "What is the employee's role?",
+                choices: roleOptions
+              },
+              {
+                name: "manager_id",
+                type: "list",
+                message: "Who is the employee's manager?",
+                choices: managerOptions
+              },
+            ])
+            .then((answer) => {
 
-    ])
-    .then((answer) => {
+              let newEmployee = {
+                first_name: answer.first_name,
+                last_name: answer.last_name,
+                role_id: answer.role_id,
+                manager_id: answer.manager_id,
+              }
+              DB.addEmployee(newEmployee);
+              console.log(`Added new employee: ${newEmployee}`);
+              init();
 
-      let newEmployee = {
-        first_name:answer.first_name,
-        last_name:answer.last_name,
-        role_id:answer.role_id,
-        manager_id:answer.manager_id,
-
-      }
-      DB.addEmployee(newEmployee);
-        console.log(`Added new employee: ${newEmployee}`); 
-        init();
-
+            })
+        })
     })
-  })
-})
 }
 
+function createRole() {
+  // /
+      inquirer
+        .prompt([
+          {
+            name: "role_name",
+            type: "input",
+            message: "What is the name of the role",
+          },
+      //     {
+      //       name: "salary",
+      //       type: "input",
+      //       message: "What is the salary of the role?",
+      //     },
+      //     {
+      //       name: "department_belong",
+      //       type: "list",
+      //       message: "Which department does the role belong to?",
+      //       choices:deptOptions
+      // },
+        ])
+        .then((answer) => {
+          let role = answer.role_name;
+          DB.addRole(role)
+          console.log(`added ${role}`);
+          init()
+        })
+    // })
+}
 init()

@@ -17,8 +17,10 @@ class DB {
         return this.connection.promise().query(`INSERT INTO department SET name = ?`, department)
     }
     addEmployee(employee){
-        // return this.connection.promise().query(`INSERT INTO employee (first_name, last_name, role_id, manager_id) VALUES ('?', ?, ?, ?), [employee.first_name, employee.last_name, employee.role_id, employee.manager_id]`);
         return this.connection.promise().query(`INSERT INTO employee SET ?`, employee);
+    }
+    addRole(role){
+        return this.connection.promise().query(`INSERT INTO role SET name = ?`, role);
     }
 
 }
