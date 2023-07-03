@@ -53,11 +53,14 @@ function init() {
       if (answers.category === 'Add a role') {
         createRole();
       }
+      if (answers.category === 'Update employee role') {
+        changeRole();
+      }
     })
 
 }
 
-
+// Add department
 function createDept() {
   inquirer
     .prompt([
@@ -75,6 +78,7 @@ function createDept() {
     })
 }
 
+//Add an employee
 function createEmployee() {
 
   DB.viewAllRoles()
@@ -133,6 +137,7 @@ function createEmployee() {
     })
 }
 
+//Add a role
 function createRole() {
   DB.viewAllDepartments()
     .then(([departments]) => {
@@ -161,7 +166,7 @@ function createRole() {
           },
         ])
         .then((answer) => {
-          let newRole = { 
+          let newRole = {
             title: answer.title,
             salary: answer.salary,
             department_id: answer.department_id,
@@ -170,17 +175,52 @@ function createRole() {
           console.log(`added ${newRole.title}`);
           init();
         })
-      })
-    }
+    })
+}
+//Update employee role
+function changeRole() {
+  DB.viewAllRoles()
+    .then(([roles]) => {
+      const roleOptions = roles.map(({ id, title }) => ({
+        name: title,
+        value: id
+      }))
+      DB.viewAllEmployees()
+        .then(([employees]) => {
+          const employeeOptions = employees.map(({ id, first_name, last_name }) => ({
+            name: `${first_name} ${last_name}`,
+            value: id
+          }))
+          inquirer
+            .prompt([
+              {
+                name: "change_id",
+                type: "list",
+                message: "Which employee's role do you want to update?",
+                choices: employeeOptions
+              },
+              {
+                name: "role_change",
+                type: "list",
+                message: "Which role do you want to assign the selected employee?",
+                choices:roleOptions
+              },
+            ])
+            .then((answer) => {
 
-// function updateEmployeeRole(){
-//   DB.viewAllEmployees()
-//         .then(([employees]) => {
-//           const managerOptions = employees.map(({ id, first_name, last_name }) => ({
-//             name: `${first_name} ${last_name}`,
-//             value: id
-//           }))
-// }
+              let changeEmployee = {
+                first_name: answer.first_name,
+                last_name: answer.last_name,
+                role_id: answer.role_id,
+              }
+              DB.updateEmployeeRole(updateEmployeeRole);
+              console.log(`Updated employee role : ${updateEmployeeRole}`);
+              init();
+
+            })
+        })
+    })
+}
 
 init()
 
