@@ -56,6 +56,10 @@ function init() {
       if (answers.category === 'Update employee role') {
         changeRole();
       }
+      if (answers.category === 'Exit') {
+        console.log('Bye!')
+        process.exit()
+      }
     })
 
 }
@@ -208,13 +212,12 @@ function changeRole() {
             ])
             .then((answer) => {
 
-              let changeEmployee = {
-                first_name: answer.first_name,
-                last_name: answer.last_name,
-                role_id: answer.role_id,
-              }
-              DB.updateEmployeeRole(updateEmployeeRole);
-              console.log(`Updated employee role : ${updateEmployeeRole}`);
+              // let changeEmployee = {
+                let newemployeeid = answer.change_id;
+                let newroleid= answer.role_change;
+              // }
+              DB.updateEmployeeRole(newemployeeid, newroleid);
+              console.log(`Updated employee role : ${newroleid}`);
               init();
 
             })
