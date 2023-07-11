@@ -30,6 +30,7 @@ Mysql and Inquirer, dontev
 
 ## Link
 [Github repository](https://github.com/Shok1to/Note-Taker)
+
 [Employee tracker video demo](https://drive.google.com/file/d/19ZzsULObB6_Xu2BvuyIwIo8zRsbLjMXR/view)
 
 ## License
